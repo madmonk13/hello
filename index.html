@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jeff Ulicny</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway+Dots&display=swap" rel="stylesheet">
+    <style>
+        @font-face {
+            font-family: 'Inter';
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Raleway Dots';
+            font-display: swap;
+        }
+
+        :root {
+            --primary-blue: #2c3e50;
+            --secondary-blue: #3498db;
+            --light-blue: #2980b9;
+            --dark-blue: #1a252f;
+            --dark-grey: #34495e;
+            --light-grey: #ecf0f1;
+            --text-color: #2d3436;
+            --text-light: #636e72;
+            --grid-color: rgba(52, 152, 219, 0.2);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background: #ffffff;
+            color: var(--text-color);
+            line-height: 1.6;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+            visibility: hidden;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        body.fonts-loaded {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                linear-gradient(90deg, var(--grid-color) 2px, transparent 2px) 0 0 / 50px 50px,
+                linear-gradient(var(--grid-color) 2px, transparent 2px) 0 0 / 50px 50px;
+            transform: perspective(300px) rotateX(45deg) translateZ(-50px);
+            z-index: -1;
+            opacity: 0.8;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        header {
+            background: #ffffff;
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+            font-family: 'Raleway Dots';
+            letter-spacing: 2px;
+        }
+
+        .section {
+            padding: 6rem 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .section:last-child {
+            border-bottom: none;
+        }
+
+        .section h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        .section p {
+            font-size: 1.25rem;
+            color: var(--text-light);
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            line-height: 1.8;
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 4rem;
+            margin-top: 2rem;
+        }
+
+        .tech-card {
+            background: #ffffff;
+            padding: 3rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .tech-card h3 {
+            font-size: 1.75rem;
+            font-weight: 600;
+            color: var(--primary-blue);
+            margin-bottom: 2rem;
+        }
+
+        .tech-icons {
+            display: grid;
+            grid-template-columns: repeat(8, 1fr);
+            gap: 2rem;
+            width: 100%;
+        }
+
+        .tech-icon {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            padding: 1.5rem;
+            background: #f8f9fa;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .tech-icon:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            background: #ffffff;
+        }
+
+        .tech-icon i {
+            font-size: 2rem;
+            color: var(--secondary-blue);
+        }
+
+        .tech-icon span {
+            font-size: 0.9rem;
+            color: var(--text-color);
+            font-weight: 500;
+        }
+
+        .links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .link-button {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: var(--secondary-blue);
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .link-button:hover {
+            transform: translateY(-2px);
+            background: var(--light-blue);
+        }
+
+        @media (max-width: 1400px) {
+            .tech-icons {
+                grid-template-columns: repeat(7, 1fr);
+            }
+        }
+
+        @media (max-width: 1200px) {
+            .tech-icons {
+                grid-template-columns: repeat(6, 1fr);
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .tech-icons {
+                grid-template-columns: repeat(5, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.5rem;
+            }
+
+            .section h2 {
+                font-size: 2rem;
+            }
+
+            .section p {
+                font-size: 1.1rem;
+            }
+
+            .tech-icons {
+                grid-template-columns: repeat(4, 1fr);
+            }
+            
+            .links {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .tech-icons {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .company-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-top: 2rem;
+        }
+
+        .company-card {
+            background: rgba(255, 255, 255, 0.75);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+
+        .company-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .company-logo {
+            width: 200px;
+            height: auto;
+            margin-bottom: 1.5rem;
+            object-fit: contain;
+            max-height: 80px;
+        }
+
+        .company-card:hover .company-logo {
+            transform: scale(1.05);
+        }
+
+        .company-info {
+            margin-top: 1rem;
+        }
+
+        .company-info p {
+            color: var(--text-light);
+            font-size: 1rem;
+            margin-top: 0.5rem;
+        }
+    </style>
+    <script>
+        document.fonts.ready.then(function () {
+            document.body.classList.add('fonts-loaded');
+        });
+    </script>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Jeff Ulicny</h1>
+            <p>Web Developer</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="section" id="introduction">
+            <h2>Hello!</h2>
+            <p>For over 20 years I've been creating modern, responsive, and user-friendly web applications. With a strong foundation in both front-end and back-end technologies, I strive to build efficient and elegant solutions for complex problems.</p>
+        </section>
+
+        <section class="section" id="technologies">
+            <h2>Technologies and Languages</h2>
+            <div class="tech-grid">
+                <div class="tech-card">
+                    <h3>Frontend</h3>
+                    <div class="tech-icons">
+                        <div class="tech-icon">
+                            <i class="fab fa-angular"></i>
+                            <span>Angular</span>
+                        </div>
+                        <div class="tech-icon">
+                            <i class="fab fa-bootstrap"></i>
+                            <span>Bootstrap</span>
+                        </div>
+                        <div class="tech-icon">
+                            <i class="fab fa-js"></i>
+                            <span>ECMAScript 6</span>
+                        </div>
+                        <div class="tech-icon">
+                            <i class="fab fa-html5"></i>
+                            <span>HTML5</span>
+                        </div>
+                        <div class="tech-icon">
+                            <i class="fab fa-js"></i>
+                            <span>jQuery</span>
+                        </div>
+                        <div class="tech-icon">
+                            <i class="fab fa-angular"></i>
+                            <span>NgRx</span>
+                        </div>
+                        <div class="tech-icon">
+                            <i class="fas fa-code"></i>
+                            <span>RxJS</span>
+                        </div>
+                        <div class="tech-icon">
+                            <i class="fab fa-sass"></i>
+                            <span>SASS/LESS</span>
+                        </div>
+                        <div class="tech-icon">
+                            <i class="fab fa-react"></i>
+                            <span>React</span>
+                        </div>
+                        <div class="tech-icon">
+                            <i class="fab fa-js"></i>
+                            <span>TypeScript</span>
+                        </div>
+                        <div class="tech-icon">
+                            <i class="fas fa-window-maximize"></i>
+                            <span>Webix</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="tech-card">
+                    <h3>Backend</h3>
+                    <div class="tech-icons">
+                        <div class="tech-icon">
+                            <i class="fab fa-node-js"></i>
+                            <span>Node.js</span>
+                        </div>
+                        <div class="tech-icon">
+                            <i class="fab fa-php"></i>
+                            <span>PHP</span>
+                        </div>
+                        <div class="tech-icon">
+                            <i class="fas fa-database"></i>
+                            <span>SQL</span>
+                        </div>
+                        <div class="tech-icon">
+                            <i class="fas fa-code"></i>
+                            <span>JSON</span>
+                        </div>
+                        <div class="tech-icon">
+                            <i class="fas fa-code"></i>
+                            <span>SOAP</span>
+                        </div>
+                        <div class="tech-icon">
+                            <i class="fas fa-code"></i>
+                            <span>XML</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="tech-card">
+                    <h3>Tools</h3>
+                    <div class="tech-icons">
+                        <div class="tech-icon">
+                            <i class="fas fa-pencil-ruler"></i>
+                            <span>Adobe XD</span>
+                        </div>
+                        <div class="tech-icon">
+                            <i class="fab fa-figma"></i>
+                            <span>Adobe Figma</span>
+                        </div>
+                        <div class="tech-icon">
+                            <i class="fab fa-microsoft"></i>
+                            <span>Azure Cloud</span>
+                        </div>
+                        <div class="tech-icon">
+                            <i class="fab fa-microsoft"></i>
+                            <span>Azure DevOps</span>
+                        </div>
+                        <div class="tech-icon">
+                            <i class="fas fa-terminal"></i>
+                            <span>Bash</span>
+                        </div>
+                        <div class="tech-icon">
+                            <i class="fas fa-code-branch"></i>
+                            <span>CI/CD</span>
+                        </div>
+                        <div class="tech-icon">
+                            <i class="fas fa-code"></i>
+                            <span>Cursor.ai</span>
+                        </div>
+                        <div class="tech-icon">
+                            <i class="fab fa-git-alt"></i>
+                            <span>Git</span>
+                        </div>
+                        <div class="tech-icon">
+                            <i class="fas fa-flask"></i>
+                            <span>Jasmine</span>
+                        </div>
+                        <div class="tech-icon">
+                            <i class="fas fa-cogs"></i>
+                            <span>Jenkins</span>
+                        </div>
+                        <div class="tech-icon">
+                            <i class="fas fa-code"></i>
+                            <span>VS Code</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="companies">
+            <h2>Companies I've Worked With</h2>
+            <div class="company-grid">
+                <div class="company-card">
+                    <img src="logos/sngular.jpg" alt="Sngular" class="company-logo">
+                    <div class="company-info">
+                        <p>Global technology consulting company specializing in digital transformation and innovation.</p>
+                    </div>
+                </div>
+                <div class="company-card">
+                    <img src="logos/acrelec.jpg" alt="Acrelec America" class="company-logo">
+                    <div class="company-info">
+                        <p>Leading provider of digital solutions for the foodservice and retail industries.</p>
+                    </div>
+                </div>
+                <div class="company-card">
+                    <img src="logos/digitalriver.jpg" alt="Digital River" class="company-logo">
+                    <div class="company-info">
+                        <p>Global commerce technology company enabling brands to sell their products worldwide.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="links">
+            <h2>Connect With Me</h2>
+            <div class="links">
+                <a href="#" class="link-button">GitHub</a>
+                <a href="#" class="link-button">LinkedIn</a>
+            </div>
+        </section>
+    </main>
+</body>
+</html> 
