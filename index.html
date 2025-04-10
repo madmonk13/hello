@@ -92,6 +92,19 @@
             letter-spacing: 2px;
         }
 
+        header img {
+            width: 20vw;
+            height: 20vw;
+            border-radius: 10vw;
+            margin-top: 10vh;
+            filter: grayscale(100%);
+            transition: filter 0.3s ease;
+        }
+
+        header img:hover {
+            filter: grayscale(0%);
+        }
+
         .section {
             padding: 6rem 0;
             border-bottom: 1px solid rgba(0, 0, 0, 0.1);
@@ -302,6 +315,7 @@
         <div class="container">
             <h1>Jeff Ulicny</h1>
             <p>Web Developer</p>
+            <img src="img/me.jpg" alt="Jeff Ulicny Profile Picture" class="me-image">
         </div>
     </header>
 
@@ -471,8 +485,8 @@
         <section class="section" id="links">
             <h2>Connect With Me</h2>
             <div class="links">
-                <a href="#" class="link-button">GitHub</a>
-                <a href="#" class="link-button">LinkedIn</a>
+                <a href="https://github.com/madmonk13" class="link-button">GitHub</a>
+                <a href="https://www.linkedin.com/in/jeffulicny/" class="link-button">LinkedIn</a>
             </div>
         </section>
     </main>
