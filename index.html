@@ -303,6 +303,25 @@
             font-size: 1rem;
             margin-top: 0.5rem;
         }
+
+        .bandcamp-link {
+            text-align: center;
+            margin-top: 4rem;
+            padding: 2rem;
+            font-size: 1.2rem;
+            color: var(--text-light);
+        }
+
+        .bandcamp-link a {
+            color: var(--secondary-blue);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .bandcamp-link a:hover {
+            color: var(--light-blue);
+        }
     </style>
     <script>
         document.fonts.ready.then(function () {
@@ -485,8 +504,15 @@
         <section class="section" id="links">
             <h2>Connect With Me</h2>
             <div class="links">
-                <a href="https://github.com/madmonk13" class="link-button">GitHub</a>
-                <a href="https://www.linkedin.com/in/jeffulicny/" class="link-button">LinkedIn</a>
+                <a href="https://github.com/jeffulicny" class="link-button" target="_blank">
+                    <i class="fab fa-github"></i> GitHub
+                </a>
+                <a href="https://www.linkedin.com/in/jeffulicny/" class="link-button" target="_blank">
+                    <i class="fab fa-linkedin"></i> LinkedIn
+                </a>
+            </div>
+            <div class="bandcamp-link">
+                Looking for my bandcamp page? <a href="https://madmonk13.bandcamp.com/" target="_blank">Click Here!</a>
             </div>
         </section>
     </main>
