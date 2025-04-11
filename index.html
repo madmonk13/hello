@@ -322,6 +322,63 @@
         .bandcamp-link a:hover {
             color: var(--light-blue);
         }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-top: 2rem;
+        }
+
+        .project-card {
+            background: rgba(255, 255, 255, 0.75);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .project-card h3 {
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .project-card p {
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .project-links a {
+            color: var(--secondary-blue);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .project-links a:hover {
+            color: var(--light-blue);
+        }
+
+        .project-card img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
     </style>
     <script>
         document.fonts.ready.then(function () {
@@ -496,6 +553,65 @@
                     <img src="logos/digitalriver.jpg" alt="Digital River" class="company-logo">
                     <div class="company-info">
                         <p>Global commerce technology company enabling brands to sell their products worldwide.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="projects">
+            <h2>Personal Projects</h2>
+            <div class="project-grid">
+                <div class="project-card">
+                    <img src="img/addends.png" alt="Add Ends Math Puzzle Game">
+                    <h3>Add Ends</h3>
+                    <p>Math Puzzle Game.  Swap the tiles so that all numbers add up to their target numbers.</p>
+                    <div class="project-links">
+                        <a href="https://github.com/madmonk13/addends" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+                        <a href="https://madmonk13.github.io/addends/" target="_blank"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <img src="img/covid_ww.png" alt="COVID Waste Water Levels">
+                    <h3>Covid Waste Water Level Checker</h3>
+                    <p>Check current Covid 19 waste water levels in your nearest sample location.</p>
+                    <div class="project-links">
+                        <a href="https://github.com/madmonk13/covid_ww_levels?tab=readme-ov-file" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+                        <a href="https://madmonk13.github.io/covid_ww_levels/" target="_blank"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <img src="img/dfa.png" alt="DFA PICO-8 Game">
+                    <h3>PICO-8 Games</h3>
+                    <p>Games written in Lua for the PICO-8 fantasy console.</p>
+                    <div class="project-links">
+                        <a href="https://jeffulicny.itch.io/" target="_blank"><i class="fas fa-gamepad"></i> Play on itch.io</a>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <img src="img/keymaster.png" alt="Keymaster">
+                    <h3>Keymaster</h3>
+                    <p>The challenge: make a password manager with no storage.  The result: A highly configurable pseudo-random password generator.</p>
+                    <div class="project-links">
+                        <a href="https://github.com/madmonk13/keymaster" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+                        <a href="https://madmonk13.github.io/keymaster/" target="_blank"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <img src="img/musicforspaceports.png" alt="Music for Spaceports">
+                    <h3>Music for Spaceports</h3>
+                    <p>An ambient music generator that creates atmospheric soundscapes using the HTML5 Web Audio API and using CSS animations.</p>
+                    <div class="project-links">
+                        <a href="https://github.com/madmonk13/musicforspaceports" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+                        <a href="https://madmonk13.github.io/musicforspaceports/" target="_blank"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <img src="img/jahtzee.png" alt="Yahtzee">
+                    <h3>Jahtzee</h3>
+                    <p>I couldn't find a Yahtzee Solitaire app that I liked, so I made my own.</p>
+                    <div class="project-links">
+                        <a href="https://github.com/madmonk13/Jahtzee" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+                        <a href="https://madmonk13.github.io/Jahtzee/" target="_blank"><i class="fas fa-external-link-alt"></i> Live Demo</a>
                     </div>
                 </div>
             </div>
