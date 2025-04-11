@@ -81,6 +81,7 @@
             margin-bottom: 1rem;
             font-family: 'Raleway Dots';
             letter-spacing: 2px;
+            animation: title-dropin 1s linear;
         }
 
         header img {
@@ -88,13 +89,11 @@
             height: 14vw;
             border-radius: 7vw;
             margin-top: 10vh;
-            filter: grayscale(100%);
-            transition: filter 0.3s ease;
+            animation: img-fancy 3s linear;
+            animation-iteration-count: 1;
+
         }
 
-        header img:hover {
-            filter: grayscale(0%);
-        }
 
         .section {
             padding: 6rem 0;
@@ -376,6 +375,14 @@
             font-size: 0.9rem;
             margin-top: 1rem;
             font-style: italic;
+        }
+        @keyframes img-fancy {
+            0% { filter: grayscale(100%);transform: rotateY(0deg); scale: 0.1 0.1;}
+            100% { filter: grayscale(0%);transform: rotateY(360deg); scale: 1 1;}
+        }
+        @keyframes title-dropin {
+            0% { transform: translateY(-300px); opacity: 0;}
+            100% { transform: translateY(0); opacity: 1;}
         }
     </style>
     <script>
