@@ -4,21 +4,85 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jeff Ulicny</title>
+    <meta name="description" content="Jeff Ulicny is a full-stack engineer with 20+ years building web applications, from enterprise commerce and banking to internal business tools for Nautilus Solar.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://jeffulicny.com/">
+    <meta property="og:title" content="Jeff Ulicny — Full-Stack Engineer">
+    <meta property="og:description" content="20+ years building web applications, from enterprise commerce and banking to internal business tools for Nautilus Solar.">
+    <meta property="og:image" content="https://jeffulicny.com/img/me.jpg">
+    <meta name="twitter:card" content="summary">
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#0b1120" media="(prefers-color-scheme: dark)">
     <link rel="icon" type="image/jpeg" href="img/me.jpg">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Anta&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/devicon.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anta&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-blue: #2c3e50;
-            --secondary-blue: #3498db;
-            --light-blue: #2980b9;
-            --dark-blue: #1a252f;
-            --dark-grey: #34495e;
-            --light-grey: #ecf0f1;
-            --text-color: #2d3436;
-            --text-light: #636e72;
-            --grid-color: rgba(52, 152, 219, 0.2);
+            --bg: #ffffff;
+            --surface: rgba(255, 255, 255, 0.85);
+            --chip-bg: #f1f5f9;
+            --chip-border: #e2e8f0;
+            --border: rgba(15, 23, 42, 0.1);
+            --shadow: rgba(15, 23, 42, 0.06);
+            --shadow-strong: rgba(15, 23, 42, 0.12);
+            --heading: #0f2742;
+            --text: #1e293b;
+            --text-muted: #526070;
+            --accent: #1f6fb2;
+            --accent-soft: rgba(31, 111, 178, 0.1);
+            --warm: #c2410c;
+            --button-bg: #1f6fb2;
+            --button-hover: #185a92;
+            --grid-color: rgba(31, 111, 178, 0.18);
+            --horizon-glow: transparent;
+            color-scheme: light;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root:not([data-theme="light"]) {
+                --bg: #0b1120;
+                --surface: rgba(17, 25, 40, 0.85);
+                --chip-bg: #162033;
+                --chip-border: #26334a;
+                --border: rgba(148, 163, 184, 0.15);
+                --shadow: rgba(0, 0, 0, 0.3);
+                --shadow-strong: rgba(0, 0, 0, 0.5);
+                --heading: #e6eef8;
+                --text: #cbd5e1;
+                --text-muted: #94a3b8;
+                --accent: #5cb3ff;
+                --accent-soft: rgba(92, 179, 255, 0.12);
+                --warm: #fb923c;
+                --button-bg: #1f6fb2;
+                --button-hover: #2a82cc;
+                --grid-color: rgba(92, 179, 255, 0.22);
+                --horizon-glow: rgba(92, 179, 255, 0.12);
+                color-scheme: dark;
+            }
+        }
+
+        :root[data-theme="dark"] {
+            --bg: #0b1120;
+            --surface: rgba(17, 25, 40, 0.85);
+            --chip-bg: #162033;
+            --chip-border: #26334a;
+            --border: rgba(148, 163, 184, 0.15);
+            --shadow: rgba(0, 0, 0, 0.3);
+            --shadow-strong: rgba(0, 0, 0, 0.5);
+            --heading: #e6eef8;
+            --text: #cbd5e1;
+            --text-muted: #94a3b8;
+            --accent: #5cb3ff;
+            --accent-soft: rgba(92, 179, 255, 0.12);
+            --warm: #fb923c;
+            --button-bg: #1f6fb2;
+            --button-hover: #2a82cc;
+            --grid-color: rgba(92, 179, 255, 0.22);
+            --horizon-glow: rgba(92, 179, 255, 0.12);
+            color-scheme: dark;
         }
 
         * {
@@ -29,20 +93,12 @@
         }
 
         body {
-            background: #ffffff;
-            color: var(--text-color);
+            background: var(--bg);
+            color: var(--text);
             line-height: 1.6;
             min-height: 100vh;
             position: relative;
             overflow-x: hidden;
-            visibility: hidden;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        body.fonts-loaded {
-            visibility: visible;
-            opacity: 1;
         }
 
         body::before {
@@ -60,6 +116,15 @@
             opacity: 0.8;
         }
 
+        body::after {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(ellipse at 50% 100%, var(--horizon-glow), transparent 60%);
+            z-index: -2;
+            pointer-events: none;
+        }
+
         .container {
             max-width: 1200px;
             margin: 0 auto;
@@ -69,47 +134,43 @@
         }
 
         header {
-            background: #ffffff;
-            padding: 1.5rem 0;
-            text-align: center;
-            
+            background: var(--bg);
+            padding: 3rem 0;
         }
 
         header h1 {
-            font-size: 7rem;
+            font-size: clamp(2.5rem, 8vw, 5.5rem);
+            line-height: 1.1;
             font-weight: 700;
-            color: var(--primary-blue);
-            margin-bottom: -2rem;
+            color: var(--heading);
             font-family: 'Anta', sans-serif;
             letter-spacing: 2px;
-            animation: title-slide 1s ease-out;
-            transform-style: preserve-3d;
-            transform: translateX(0) translateZ(0) rotateY(-25deg);
+            transform: rotateY(-25deg);
         }
 
         header img {
-            width: 24vw;
-            height: 24vw;
-            max-width: 14rem;
-            max-height: 14rem;
+            display: block;
+            width: 14rem;
+            height: 14rem;
+            max-width: 50vw;
+            max-height: 50vw;
             border-radius: 0;
-            margin-top: 0.5rem;
-            animation: img-drop 1s ease-out;
-            border: 4px solid var(--primary-blue);
+            border: 4px solid var(--heading);
         }
 
-        header p {
-            font-size: 2rem;
-            margin-bottom: 0.25rem;
-            animation: subtitle-slide 1s ease-out 0.3s forwards;
-            transform-style: preserve-3d;
-            transform: translateX(-100vw) translateZ(-100px) rotateY(0deg);
-            opacity: 0;
+        header .subtitle {
+            font-size: 1.75rem;
+            transform: rotateY(-25deg);
+        }
+
+        html {
+            scroll-behavior: smooth;
         }
 
         .section {
-            padding: 6rem 0;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            padding: 4rem 0;
+            border-bottom: 1px solid var(--border);
+            scroll-margin-top: 1rem;
         }
 
         .section:last-child {
@@ -119,91 +180,301 @@
         .section h2 {
             font-size: 2.5rem;
             font-weight: 700;
-            color: var(--primary-blue);
-            margin-bottom: 3rem;
+            color: var(--heading);
+            margin-bottom: 2.5rem;
             text-align: center;
         }
 
-        .section p {
-            font-size: 1.25rem;
-            color: var(--text-light);
-            max-width: 800px;
+        .theme-toggle {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            z-index: 10;
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 50%;
+            border: 1px solid var(--chip-border);
+            background: var(--surface);
+            color: var(--heading);
+            font-size: 1rem;
+            cursor: pointer;
+            backdrop-filter: blur(5px);
+            transition: color 0.2s ease, border-color 0.2s ease;
+        }
+
+        .theme-toggle:hover {
+            color: var(--warm);
+            border-color: var(--warm);
+        }
+
+        .theme-toggle .fa-sun,
+        [data-theme-effective="dark"] .theme-toggle .fa-moon {
+            display: none;
+        }
+
+        [data-theme-effective="dark"] .theme-toggle .fa-sun {
+            display: inline;
+        }
+
+        /* Hero */
+        .hero {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            align-items: center;
+            gap: 3rem;
+            max-width: 1000px;
             margin: 0 auto;
-            text-align: center;
+            text-align: left;
+        }
+
+        .hero-intro {
+            font-size: 1.15rem;
+            color: var(--text-muted);
             line-height: 1.8;
+            margin-top: 1.25rem;
+            max-width: 640px;
         }
 
-        .tech-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 4rem;
-            margin-top: 2rem;
+        .hero-nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem 1.5rem;
+            margin-top: 1.5rem;
         }
 
-        .tech-card {
-            background: #ffffff;
-            padding: 3rem;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-            text-align: center;
-            transition: all 0.3s ease;
-        }
-
-        .tech-card h3 {
-            font-size: 1.75rem;
+        .hero-nav a {
+            color: var(--accent);
+            text-decoration: none;
             font-weight: 600;
-            color: var(--primary-blue);
-            margin-bottom: 2rem;
+            font-size: 0.95rem;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
         }
 
-        .tech-icons {
+        .hero-nav a:hover {
+            color: var(--warm);
+        }
+
+        /* Experience */
+        .timeline {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0.4rem;
+            top: 0.5rem;
+            bottom: 0.5rem;
+            width: 2px;
+            background: var(--grid-color);
+        }
+
+        .timeline-item {
+            position: relative;
             display: grid;
-            grid-template-columns: repeat(8, 1fr);
+            grid-template-columns: 160px 1fr;
             gap: 2rem;
-            width: 100%;
+            align-items: start;
+            background: var(--surface);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px var(--shadow);
+            backdrop-filter: blur(5px);
+            margin-bottom: 1.5rem;
         }
 
-        .tech-icon {
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: calc(-2rem + 0.4rem - 6px);
+            top: 2.5rem;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: var(--bg);
+            border: 3px solid var(--warm);
+        }
+
+        .company-logo {
+            width: 100%;
+            height: 86px;
+            object-fit: contain;
+            background: #ffffff;
+            padding: 0.5rem 0.75rem;
+            border-radius: 8px;
+        }
+
+        .timeline-item h3 {
+            color: var(--heading);
+            font-size: 1.35rem;
+        }
+
+        .company-dates {
+            color: var(--accent);
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .company-about {
+            color: var(--text-muted);
+            margin-top: 0.5rem;
+        }
+
+        .work-description {
+            color: var(--text);
+            margin-top: 0.75rem;
+        }
+
+        /* Projects */
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
             display: flex;
             flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 1rem;
+            background: var(--surface);
             padding: 1.5rem;
-            background: #f8f9fa;
-            border-radius: 8px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px var(--shadow);
             transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
         }
 
-        .tech-icon:hover {
+        .project-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            background: #ffffff;
+            box-shadow: 0 6px 12px var(--shadow-strong);
         }
 
-        .tech-icon i {
-            font-size: 2rem;
-            color: var(--secondary-blue);
+        .project-card img {
+            width: 100%;
+            height: auto;
+            aspect-ratio: 4 / 3;
+            object-fit: cover;
+            object-position: top center;
+            border-radius: 8px;
+            margin-bottom: 1.25rem;
+            box-shadow: 0 2px 4px var(--shadow-strong);
+            background: #1a1a1a;
         }
 
-        .tech-icon span {
-            font-size: 0.9rem;
-            color: var(--text-color);
+        .project-card h3 {
+            color: var(--heading);
+            margin-bottom: 0.5rem;
+            font-size: 1.35rem;
+        }
+
+        .project-card p {
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+            margin-bottom: 1rem;
+        }
+
+        .tags span {
+            font-size: 0.8rem;
             font-weight: 500;
+            color: var(--accent);
+            background: var(--accent-soft);
+            padding: 0.15rem 0.6rem;
+            border-radius: 999px;
         }
 
+        .project-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: auto;
+        }
+
+        .project-links a,
+        .more-projects a {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .project-links a:hover,
+        .more-projects a:hover {
+            color: var(--warm);
+        }
+
+        .more-projects {
+            text-align: center;
+            margin-top: 2.5rem;
+            font-size: 1.1rem;
+        }
+
+        /* Skills */
+        .skill-groups {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .skill-group {
+            background: var(--surface);
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px var(--shadow);
+            backdrop-filter: blur(5px);
+        }
+
+        .skill-group h3 {
+            font-size: 1.1rem;
+            color: var(--heading);
+            margin-bottom: 1rem;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .skill-tags span {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.9rem;
+            font-weight: 500;
+            background: var(--chip-bg);
+            border: 1px solid var(--chip-border);
+            padding: 0.3rem 0.75rem;
+            border-radius: 999px;
+        }
+
+        .skill-tags i {
+            color: var(--accent);
+            font-size: 0.95rem;
+        }
+
+        /* Contact */
         .links {
             display: flex;
+            flex-wrap: wrap;
             justify-content: center;
-            gap: 2rem;
-            margin-top: 3rem;
+            gap: 1.5rem;
         }
 
         .link-button {
             display: inline-block;
+            min-width: 200px;
+            text-align: center;
             padding: 1rem 2.5rem;
-            background: var(--secondary-blue);
-            color: white;
+            background: var(--button-bg);
+            color: #ffffff;
             text-decoration: none;
             border-radius: 4px;
             font-weight: 500;
@@ -212,392 +483,159 @@
 
         .link-button:hover {
             transform: translateY(-2px);
-            background: var(--light-blue);
+            background: var(--button-hover);
         }
 
-        @media (max-width: 1400px) {
-            .tech-icons {
-                grid-template-columns: repeat(7, 1fr);
-            }
-        }
-
-        @media (max-width: 1200px) {
-            .tech-icons {
-                grid-template-columns: repeat(6, 1fr);
-            }
-        }
-
-        @media (max-width: 1024px) {
-            .tech-icons {
-                grid-template-columns: repeat(5, 1fr);
-            }
+        header h1,
+        header .subtitle {
+            transform-origin: left center;
         }
 
         @media (max-width: 768px) {
-            header h1 {
-                font-size: 2.5rem;
-            }
-
             .section h2 {
                 font-size: 2rem;
             }
 
-            .section p {
-                font-size: 1.1rem;
+            header h1,
+            header .subtitle {
+                transform-origin: center;
             }
 
-            .tech-icons {
-                grid-template-columns: repeat(4, 1fr);
+            .hero {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+                justify-items: center;
+                text-align: center;
             }
-            
+
+            .hero-intro {
+                text-align: left;
+            }
+
+            .hero-nav {
+                justify-content: center;
+            }
+
+            .timeline-item {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+                padding: 1.5rem;
+            }
+
+            .company-logo {
+                width: 200px;
+                height: 72px;
+            }
+
+            .skill-groups {
+                grid-template-columns: 1fr;
+            }
+
             .links {
                 flex-direction: column;
                 align-items: center;
             }
         }
 
-        @media (max-width: 480px) {
-            .tech-icons {
-                grid-template-columns: repeat(2, 1fr);
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
             }
-        }
 
-        .company-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 3rem;
-            margin-top: 2rem;
-        }
-
-        .company-card {
-            background: rgba(255, 255, 255, 0.75);
-            padding: 2rem;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-            text-align: center;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(5px);
-        }
-
-        .company-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-        }
-
-        .company-logo {
-            width: 200px;
-            height: auto;
-            margin-bottom: 1.5rem;
-            object-fit: contain;
-            max-height: 80px;
-        }
-
-        .company-card:hover .company-logo {
-            transform: scale(1.05);
-        }
-
-        .company-info {
-            margin-top: 1rem;
-        }
-
-        .company-info p {
-            color: var(--text-light);
-            font-size: 1rem;
-            margin-top: 0.5rem;
-        }
-
-        .bandcamp-link {
-            text-align: center;
-            margin-top: 4rem;
-            padding: 2rem;
-            font-size: 1.2rem;
-            color: var(--text-light);
-        }
-
-        .bandcamp-link a {
-            color: var(--secondary-blue);
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s ease;
-        }
-
-        .bandcamp-link a:hover {
-            color: var(--light-blue);
-        }
-
-        .project-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 3rem;
-            margin-top: 2rem;
-        }
-
-        .project-card {
-            background: rgba(255, 255, 255, 0.75);
-            padding: 2rem;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-            transition: all 0.3s ease;
-            backdrop-filter: blur(5px);
-        }
-
-        .project-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-        }
-
-        .project-card h3 {
-            color: var(--primary-blue);
-            margin-bottom: 1rem;
-            font-size: 1.5rem;
-        }
-
-        .project-card p {
-            color: var(--text-light);
-            margin-bottom: 1.5rem;
-        }
-
-        .project-links {
-            display: flex;
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-
-        .project-links a {
-            color: var(--secondary-blue);
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s ease;
-        }
-
-        .project-links a:hover {
-            color: var(--light-blue);
-        }
-
-        .project-card img {
-            width: 100%;
-            height: auto;
-            border-radius: 8px;
-            margin-bottom: 1.5rem;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-
-        .work-description {
-            color: var(--text-light);
-            font-size: 0.9rem;
-            margin-top: 1rem;
-            font-style: italic;
-        }
-        @keyframes img-drop {
-            0% { 
-                transform: translateY(-100vh);
-                opacity: 0;
+            *,
+            *::before,
+            *::after {
+                transition: none !important;
             }
-            100% { 
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
-        @keyframes title-slide {
-            0% { 
-                transform: translateX(100vw) translateZ(-100px) rotateY(0deg);
-                opacity: 0;
-            }
-            100% { 
-                transform: translateX(0) translateZ(0) rotateY(-25deg);
-                opacity: 1;
-            }
-        }
-        @keyframes subtitle-slide {
-            0% { 
-                transform: translateX(-100vw) translateZ(-100px) rotateY(0deg);
-                opacity: 0;
-            }
-            100% { 
-                transform: translateX(0) translateZ(0) rotateY(-25deg);
-                opacity: 1;
+
+            .project-card:hover,
+            .link-button:hover {
+                transform: none;
             }
         }
     </style>
     <script>
-        document.fonts.ready.then(function () {
-            document.body.classList.add('fonts-loaded');
-        });
+        (function () {
+            var root = document.documentElement;
+            var dark = window.matchMedia('(prefers-color-scheme: dark)');
+            var saved = null;
+            try { saved = localStorage.getItem('theme'); } catch (e) {}
+            if (saved === 'light' || saved === 'dark') root.setAttribute('data-theme', saved);
+
+            function effective() {
+                return root.getAttribute('data-theme') || (dark.matches ? 'dark' : 'light');
+            }
+            function sync() {
+                root.setAttribute('data-theme-effective', effective());
+            }
+            sync();
+            dark.addEventListener('change', sync);
+
+            window.toggleTheme = function () {
+                var next = effective() === 'dark' ? 'light' : 'dark';
+                root.setAttribute('data-theme', next);
+                try { localStorage.setItem('theme', next); } catch (e) {}
+                sync();
+            };
+        })();
     </script>
 </head>
 <body>
+    <button class="theme-toggle" type="button" onclick="toggleTheme()" aria-label="Toggle dark mode">
+        <i class="fas fa-moon"></i><i class="fas fa-sun"></i>
+    </button>
     <header>
-        <div class="container">
-            <h1>Jeff Ulicny</h1>
-            <p>Web Developer</p>
+        <div class="container hero">
             <img src="img/me.jpg" alt="Jeff Ulicny Profile Picture" class="me-image">
+            <div>
+                <h1>Jeff Ulicny</h1>
+                <p class="subtitle">Full-Stack Engineer</p>
+                <p class="hero-intro">I've spent over 20 years building web applications that businesses run on: B2B commerce and reporting at Digital River, kiosk and drive-thru ordering for national restaurant chains, online banking for PNC, and now the internal platform behind day-to-day operations at Nautilus Solar. I like taking messy business processes and turning them into software people actually want to use. Off the clock, I build generative music tools, browser games, and whatever else I get curious about.</p>
+                <nav class="hero-nav">
+                    <a href="#experience">Experience</a>
+                    <a href="#projects">Projects</a>
+                    <a href="#skills">Skills</a>
+                    <a href="#contact">Contact</a>
+                </nav>
+            </div>
         </div>
     </header>
 
     <main class="container">
-        <section class="section" id="introduction">
-            <h2>Hello!</h2>
-            <p>For over 20 years I've been creating modern, responsive, and user-friendly web applications. With a strong foundation in both front-end and back-end technologies, I strive to build efficient and elegant solutions for complex problems.</p>
-        </section>
-
-        <section class="section" id="technologies">
-            <h2>Technologies and Languages</h2>
-            <div class="tech-grid">
-                <div class="tech-card">
-                    <h3>Frontend</h3>
-                    <div class="tech-icons">
-                        <div class="tech-icon">
-                            <i class="fab fa-angular"></i>
-                            <span>Angular</span>
-                        </div>
-                        <div class="tech-icon">
-                            <i class="fab fa-bootstrap"></i>
-                            <span>Bootstrap</span>
-                        </div>
-                        <div class="tech-icon">
-                            <i class="fab fa-js"></i>
-                            <span>ECMAScript 6</span>
-                        </div>
-                        <div class="tech-icon">
-                            <i class="fab fa-html5"></i>
-                            <span>HTML5</span>
-                        </div>
-                        <div class="tech-icon">
-                            <i class="fab fa-js"></i>
-                            <span>jQuery</span>
-                        </div>
-                        <div class="tech-icon">
-                            <i class="fab fa-angular"></i>
-                            <span>NgRx</span>
-                        </div>
-                        <div class="tech-icon">
-                            <i class="fas fa-code"></i>
-                            <span>RxJS</span>
-                        </div>
-                        <div class="tech-icon">
-                            <i class="fab fa-sass"></i>
-                            <span>SASS/LESS</span>
-                        </div>
-                        <div class="tech-icon">
-                            <i class="fab fa-react"></i>
-                            <span>React</span>
-                        </div>
-                        <div class="tech-icon">
-                            <i class="fab fa-js"></i>
-                            <span>TypeScript</span>
-                        </div>
-                        <div class="tech-icon">
-                            <i class="fas fa-window-maximize"></i>
-                            <span>Webix</span>
-                        </div>
+        <section class="section" id="experience">
+            <h2>Experience</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <img width="480" height="175" loading="lazy" decoding="async" src="logos/nautilus.webp" alt="Nautilus Solar Energy" class="company-logo">
+                    <div>
+                        <h3>Nautilus Solar Energy</h3>
+                        <span class="company-dates">2025 – Present</span>
+                        <p class="company-about">Independent power producer that develops, owns, and operates community and distributed solar projects across the U.S.</p>
+                        <p class="work-description">Developing the company intranet, including ticketing and other business operations tools.</p>
                     </div>
                 </div>
-                <div class="tech-card">
-                    <h3>Backend</h3>
-                    <div class="tech-icons">
-                        <div class="tech-icon">
-                            <i class="fab fa-node-js"></i>
-                            <span>Node.js</span>
-                        </div>
-                        <div class="tech-icon">
-                            <i class="fab fa-php"></i>
-                            <span>PHP</span>
-                        </div>
-                        <div class="tech-icon">
-                            <i class="fas fa-database"></i>
-                            <span>SQL</span>
-                        </div>
-                        <div class="tech-icon">
-                            <i class="fas fa-code"></i>
-                            <span>JSON</span>
-                        </div>
-                        <div class="tech-icon">
-                            <i class="fas fa-code"></i>
-                            <span>SOAP</span>
-                        </div>
-                        <div class="tech-icon">
-                            <i class="fas fa-code"></i>
-                            <span>XML</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="tech-card">
-                    <h3>Tools</h3>
-                    <div class="tech-icons">
-                        <div class="tech-icon">
-                            <i class="fas fa-pencil-ruler"></i>
-                            <span>Adobe XD</span>
-                        </div>
-                        <div class="tech-icon">
-                            <i class="fab fa-figma"></i>
-                            <span>Adobe Figma</span>
-                        </div>
-                        <div class="tech-icon">
-                            <i class="fab fa-microsoft"></i>
-                            <span>Azure Cloud</span>
-                        </div>
-                        <div class="tech-icon">
-                            <i class="fab fa-microsoft"></i>
-                            <span>Azure DevOps</span>
-                        </div>
-                        <div class="tech-icon">
-                            <i class="fas fa-terminal"></i>
-                            <span>Bash</span>
-                        </div>
-                        <div class="tech-icon">
-                            <i class="fas fa-code-branch"></i>
-                            <span>CI/CD</span>
-                        </div>
-                        <div class="tech-icon">
-                            <i class="fas fa-code"></i>
-                            <span>Cursor.ai</span>
-                        </div>
-                        <div class="tech-icon">
-                            <i class="fab fa-git-alt"></i>
-                            <span>Git</span>
-                        </div>
-                        <div class="tech-icon">
-                            <i class="fas fa-flask"></i>
-                            <span>Jasmine</span>
-                        </div>
-                        <div class="tech-icon">
-                            <i class="fas fa-cogs"></i>
-                            <span>Jenkins</span>
-                        </div>
-                        <div class="tech-icon">
-                            <i class="fas fa-code"></i>
-                            <span>VS Code</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="section" id="companies">
-            <h2>Companies I've Worked With</h2>
-            <div class="company-grid">
-                <div class="company-card">
-                    <img src="logos/sngular.jpg" alt="Sngular" class="company-logo">
-                    <div class="company-info">
+                <div class="timeline-item">
+                    <img width="480" height="99" loading="lazy" decoding="async" src="logos/sngular.webp" alt="Sngular" class="company-logo">
+                    <div>
                         <h3>Sngular</h3>
-                        <p>Global technology consulting company specializing in digital transformation and innovation.</p>
-                        <p class="work-description">Through Sngular I partnered with PNC Bank to help develop a new UI for their online banking platform.</p>
+                        <p class="company-about">Global technology consulting company specializing in digital transformation and innovation.</p>
+                        <p class="work-description">Partnered with PNC Bank to help develop a new UI for their online banking platform.</p>
                     </div>
                 </div>
-                <div class="company-card">
-                    <img src="logos/acrelec.jpg" alt="Acrelec America" class="company-logo">
-                    <div class="company-info">
+                <div class="timeline-item">
+                    <img width="480" height="211" loading="lazy" decoding="async" src="logos/acrelec.webp" alt="Acrelec America" class="company-logo">
+                    <div>
                         <h3>Acrelec America</h3>
-                        <p>Leading provider of digital solutions for the foodservice and retail industries.</p>
-                        <p class="work-description">While at Acrelec America I developed Kiosk and Drive Through Applications for major restaurant chains such as Steak 'n Shake, Dunkin' Donuts, and others.</p>
+                        <p class="company-about">Leading provider of digital solutions for the foodservice and retail industries.</p>
+                        <p class="work-description">Developed kiosk and drive-thru applications for major restaurant chains such as Steak 'n Shake, Dunkin' Donuts, and others.</p>
                     </div>
                 </div>
-                <div class="company-card">
-                    <img src="logos/digitalriver.jpg" alt="Digital River" class="company-logo">
-                    <div class="company-info">
+                <div class="timeline-item">
+                    <img width="184" height="76" loading="lazy" decoding="async" src="logos/digitalriver.webp" alt="Digital River" class="company-logo">
+                    <div>
                         <h3>Digital River</h3>
-                        <p>Global commerce technology company enabling brands to sell their products worldwide.</p>
-                        <p class="work-description">During my 14 years at Digital River I developed reporting and B2B sales applications for clients such as Siemens, McAfee, and many others.</p>
+                        <p class="company-about">Global commerce technology company enabling brands to sell their products worldwide.</p>
+                        <p class="work-description">Over 14 years, developed reporting and B2B sales applications for clients such as Siemens, McAfee, and many others.</p>
                     </div>
                 </div>
             </div>
@@ -607,62 +645,168 @@
             <h2>Personal Projects</h2>
             <div class="project-grid">
                 <div class="project-card">
-                    <img src="img/addends.png" alt="Add Ends Math Puzzle Game">
+                    <img width="800" height="727" loading="lazy" decoding="async" src="img/modal16.webp" alt="modal-16 sequencer interface">
+                    <h3>modal-16</h3>
+                    <p>A browser-based lo-fi electronic music sequencer built with Tone.js, loosely based on ReBirth RB-338.</p>
+                    <div class="tags"><span>Tone.js</span><span>Web Audio</span></div>
+                    <div class="project-links">
+                        <a href="https://github.com/madmonk13/modal-16" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+                        <a href="https://madmonk13.github.io/modal-16/" target="_blank"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <img width="640" height="640" loading="lazy" decoding="async" src="img/dragonslayer.webp" alt="Dragonslayer title screen">
+                    <h3>Dragonslayer</h3>
+                    <p>A dice-driven browser RPG. You have 30 days to grow strong enough to defeat the dragon Pyraxis and save your daughter.</p>
+                    <div class="tags"><span>JavaScript</span><span>Game</span></div>
+                    <div class="project-links">
+                        <a href="https://github.com/madmonk13/Dragonslayer" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+                        <a href="https://madmonk13.github.io/Dragonslayer/dragonslayer.html" target="_blank"><i class="fas fa-gamepad"></i> Play</a>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <img width="787" height="709" loading="lazy" decoding="async" src="img/instapod.webp" alt="Instapod web interface">
+                    <h3>Instapod</h3>
+                    <p>A self-hosted "Instapaper for your ears." Submit any article and it's narrated with local Kokoro text-to-speech and published to a private podcast feed. Nothing leaves your machine.</p>
+                    <div class="tags"><span>Node.js</span><span>Python</span><span>Text-to-Speech</span></div>
+                    <div class="project-links">
+                        <a href="https://github.com/madmonk13/instapod" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <img width="694" height="690" loading="lazy" decoding="async" src="img/addends.webp" alt="Add Ends Math Puzzle Game">
                     <h3>Add Ends</h3>
-                    <p>Math Puzzle Game.  Swap the tiles so that all numbers add up to their target numbers.</p>
+                    <p>Math puzzle game. Swap the tiles so that all numbers add up to their target numbers.</p>
+                    <div class="tags"><span>JavaScript</span><span>Puzzle</span></div>
                     <div class="project-links">
                         <a href="https://github.com/madmonk13/addends" target="_blank"><i class="fab fa-github"></i> GitHub</a>
                         <a href="https://madmonk13.github.io/addends/" target="_blank"><i class="fas fa-external-link-alt"></i> Live Demo</a>
                     </div>
                 </div>
                 <div class="project-card">
-                    <img src="img/covid_ww.png" alt="COVID Waste Water Levels">
-                    <h3>Covid Waste Water Level Checker</h3>
-                    <p>Check current Covid 19 waste water levels in your nearest sample location.</p>
+                    <img width="600" height="610" loading="lazy" decoding="async" src="img/covid_ww.webp" alt="Wastewater virus levels for a monitoring site">
+                    <h3>Wastewater Virus Levels</h3>
+                    <p>Check current wastewater levels of COVID-19, influenza A, and RSV at your nearest CDC monitoring site, using live data from the CDC's National Wastewater Surveillance System.</p>
+                    <div class="tags"><span>JavaScript</span><span>CDC Open Data</span></div>
                     <div class="project-links">
                         <a href="https://github.com/madmonk13/covid_ww_levels?tab=readme-ov-file" target="_blank"><i class="fab fa-github"></i> GitHub</a>
                         <a href="https://madmonk13.github.io/covid_ww_levels/" target="_blank"><i class="fas fa-external-link-alt"></i> Live Demo</a>
                     </div>
                 </div>
                 <div class="project-card">
-                    <img src="img/dfa.png" alt="DFA PICO-8 Game">
+                    <img width="800" height="798" loading="lazy" decoding="async" src="img/dfa.webp" alt="DFA PICO-8 Game">
                     <h3>PICO-8 Games</h3>
                     <p>Games written in Lua for the PICO-8 fantasy console.</p>
+                    <div class="tags"><span>Lua</span><span>PICO-8</span></div>
                     <div class="project-links">
                         <a href="https://jeffulicny.itch.io/" target="_blank"><i class="fas fa-gamepad"></i> Play on itch.io</a>
                     </div>
                 </div>
                 <div class="project-card">
-                    <img src="img/keymaster.png" alt="Keymaster">
+                    <img width="800" height="759" loading="lazy" decoding="async" src="img/keymaster.webp" alt="Keymaster">
                     <h3>Keymaster</h3>
-                    <p>The challenge: make a password manager with no storage.  The result: A highly configurable pseudo-random password generator.</p>
+                    <p>The challenge: make a password manager with no storage. The result: A highly configurable pseudo-random password generator.</p>
+                    <div class="tags"><span>JavaScript</span><span>Security</span></div>
                     <div class="project-links">
                         <a href="https://github.com/madmonk13/keymaster" target="_blank"><i class="fab fa-github"></i> GitHub</a>
                         <a href="https://madmonk13.github.io/keymaster/" target="_blank"><i class="fas fa-external-link-alt"></i> Live Demo</a>
                     </div>
                 </div>
                 <div class="project-card">
-                    <img src="img/musicforspaceports.png" alt="Music for Spaceports">
-                    <h3>Music for Spaceports</h3>
-                    <p>An ambient music generator that creates atmospheric soundscapes using the HTML5 Web Audio API while displaying cosmic CSS animations.</p>
+                    <img width="560" height="480" loading="lazy" decoding="async" src="img/ambient_engine.webp" alt="Ambient Engine">
+                    <h3>Ambient Engine</h3>
+                    <p>A generative ambient music instrument that runs entirely in the browser. You pick the scale, key, instruments, and density; simple rules and probability do the composing. No AI involved.</p>
+                    <div class="tags"><span>Web Audio</span><span>Generative</span></div>
                     <div class="project-links">
-                        <a href="https://github.com/madmonk13/musicforspaceports" target="_blank"><i class="fab fa-github"></i> GitHub</a>
-                        <a href="https://madmonk13.github.io/musicforspaceports/" target="_blank"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                        <a href="https://github.com/madmonk13/ambient_engine" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+                        <a href="https://madmonk13.github.io/ambient_engine/" target="_blank"><i class="fas fa-external-link-alt"></i> Live Demo</a>
                     </div>
                 </div>
                 <div class="project-card">
-                    <img src="img/jahtzee.png" alt="Yahtzee">
-                    <h3>Jahtzee</h3>
-                    <p>I couldn't find a Yahtzee Solitaire app that I liked, so I made my own.</p>
+                    <img width="600" height="700" loading="lazy" decoding="async" src="img/flashcards.webp" alt="Flashcards deck selection screen">
+                    <h3>Flashcards</h3>
+                    <p>A mobile-friendly flashcard app: tap to flip, swipe to move through the deck. Ships with decks for CSS, JavaScript, React, Git, and more, and can load your own.</p>
+                    <div class="tags"><span>JavaScript</span><span>Mobile</span></div>
                     <div class="project-links">
-                        <a href="https://github.com/madmonk13/Jahtzee" target="_blank"><i class="fab fa-github"></i> GitHub</a>
-                        <a href="https://madmonk13.github.io/Jahtzee/" target="_blank"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                        <a href="https://github.com/madmonk13/flashcards" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+                        <a href="https://madmonk13.github.io/flashcards/" target="_blank"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                    </div>
+                </div>
+            </div>
+            <div class="more-projects">
+                <a href="https://github.com/madmonk13?tab=repositories" target="_blank">More projects on GitHub <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </section>
+
+        <section class="section" id="skills">
+            <h2>Skills</h2>
+            <div class="skill-groups">
+                <div class="skill-group">
+                    <h3>Frontend</h3>
+                    <div class="skill-tags">
+                        <span><i class="fab fa-angular"></i>Angular</span>
+                        <span><i class="fab fa-bootstrap"></i>Bootstrap</span>
+                        <span><i class="fab fa-js"></i>ECMAScript 6</span>
+                        <span><i class="fab fa-html5"></i>HTML5</span>
+                        <span><i class="fab fa-css3-alt"></i>CSS3</span>
+                        <span><i class="fab fa-js"></i>jQuery</span>
+                        <span><i class="fab fa-angular"></i>NgRx</span>
+                        <span><i class="fab fa-react"></i>React</span>
+                        <span><i class="fas fa-code"></i>RxJS</span>
+                        <span><i class="fab fa-sass"></i>Sass/Less</span>
+                        <span><i class="devicon-threejs-original"></i>Three.js</span>
+                        <span><i class="fas fa-music"></i>Tone.js</span>
+                        <span><i class="devicon-typescript-plain"></i>TypeScript</span>
+                        <span><i class="fas fa-wave-square"></i>Web Audio</span>
+                    </div>
+                </div>
+                <div class="skill-group">
+                    <h3>Backend &amp; Data</h3>
+                    <div class="skill-tags">
+                        <span><i class="fab fa-node-js"></i>Node.js</span>
+                        <span><i class="fab fa-php"></i>PHP</span>
+                        <span><i class="fab fa-python"></i>Python</span>
+                        <span><i class="fas fa-moon"></i>Lua</span>
+                        <span><i class="fas fa-database"></i>SQL</span>
+                        <span><i class="devicon-postgresql-plain"></i>PostgreSQL</span>
+                        <span><i class="fas fa-code"></i>JSON</span>
+                    </div>
+                </div>
+                <div class="skill-group">
+                    <h3>Cloud &amp; DevOps</h3>
+                    <div class="skill-tags">
+                        <span><i class="fab fa-aws"></i>Amazon S3</span>
+                        <span><i class="fab fa-microsoft"></i>Azure Cloud</span>
+                        <span><i class="fab fa-microsoft"></i>Azure DevOps</span>
+                        <span><i class="fas fa-terminal"></i>Bash</span>
+                        <span><i class="fas fa-code-branch"></i>CI/CD</span>
+                        <span><i class="fab fa-git-alt"></i>Git</span>
+                        <span><i class="fab fa-github"></i>GitHub</span>
+                        <span><i class="fas fa-rocket"></i>GitHub Actions</span>
+                        <span><i class="fas fa-cogs"></i>Jenkins</span>
+                    </div>
+                </div>
+                <div class="skill-group">
+                    <h3>AI Tools</h3>
+                    <div class="skill-tags">
+                        <span><i class="fas fa-robot"></i>Claude Code</span>
+                        <span><i class="fas fa-terminal"></i>Codex</span>
+                        <span><i class="fab fa-github"></i>GitHub Copilot</span>
+                        <span><i class="fas fa-server"></i>Ollama</span>
+                    </div>
+                </div>
+                <div class="skill-group">
+                    <h3>Design, Testing &amp; Editors</h3>
+                    <div class="skill-tags">
+                        <span><i class="fab fa-figma"></i>Figma</span>
+                        <span><i class="fas fa-flask"></i>Jasmine</span>
+                        <span><i class="fas fa-code"></i>VS Code</span>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="section" id="links">
+        <section class="section" id="contact">
             <h2>Connect With Me</h2>
             <div class="links">
                 <a href="https://github.com/madmonk13" class="link-button" target="_blank">
@@ -671,11 +815,11 @@
                 <a href="https://www.linkedin.com/in/jeffulicny/" class="link-button" target="_blank">
                     <i class="fab fa-linkedin"></i> LinkedIn
                 </a>
-            </div>
-            <div class="bandcamp-link">
-                Looking for my bandcamp page? <a href="https://madmonk13.bandcamp.com/" target="_blank">Click Here!</a>
+                <a href="https://madmonk13.bandcamp.com/" class="link-button" target="_blank">
+                    <i class="fab fa-bandcamp"></i> Bandcamp
+                </a>
             </div>
         </section>
     </main>
 </body>
-</html> 
+</html>
